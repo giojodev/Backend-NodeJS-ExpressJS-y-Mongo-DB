@@ -1,6 +1,6 @@
 'use strict'
 
-const { param } = require('../app');
+// const { param } = require('../app');
 var Project= require('../models/project');
 
 var controller={
@@ -100,6 +100,34 @@ var controller={
                 project:projectDelete
             });
         })
+    },
+    uploadImage:function(req,res){
+        var projectId=req.params.id;
+        
+        var filename='Imagen no subida...';
+
+        if(req.files){
+            var filePath=req.files.image.path;
+            var fileSplit=filePath.split('\\');
+            var fileName=fileSplit[1];
+
+            Project.findByIdAndUpdate(projectId,{image:fileName},{new:true},(err,projectUpdated)=>{
+                if(err) return res.status(200).send({
+                    message:"La imagen no se ha subido"
+                })
+                if(!projectUpdated) return res.status(404).send({send:"La imagen no existe"});
+
+                return res.status(200).send({
+                    projectUpdated
+                })
+            })
+            
+        }
+        else{
+            return res.status(200).send({
+                message:filename  
+            })
+        }
     }
 
 };
