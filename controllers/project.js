@@ -40,11 +40,11 @@ var controller={
             return res.status(200).send({ project:projectStored});
         });
         
-        return res.status(200).send({
+        // return res.status(200).send({
             
-            project:project,
-            message:'Metodo SaveProject'
-        })
+        //     project:project,
+        //     message:'Metodo SaveProject'
+        // })
     
     },
 
