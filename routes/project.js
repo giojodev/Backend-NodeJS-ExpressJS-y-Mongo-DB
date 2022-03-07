@@ -18,5 +18,6 @@ router.get('/projects',projectController.getProjects);
 router.put('/project/:id',projectController.updateProject);
 router.delete('/project/:id',projectController.deleteProject);
 router.post('/upload-image/:id',multipartMiddleware,projectController.uploadImage);
+router.get('/get-image/:image',projectController.getImageFile);
 
 module.exports=router;
